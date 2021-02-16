@@ -1,1 +1,1 @@
-# N-mero_Crom-tico
+# Numero_Cromatico
