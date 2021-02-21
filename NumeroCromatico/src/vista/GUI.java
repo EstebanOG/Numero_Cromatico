@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kruskal.Vista;
+package vista;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
@@ -18,19 +20,33 @@ public class GUI extends javax.swing.JFrame {
     PanelMatriz panelMatriz;
     PanelPuntos panelPuntos;
     PanelResultados panelResultados;
+    JLabel numCromatico, permutacion;
+    
 
     /**
      * Creates new form GUI
      */
     public GUI() {
+        // Labels datos
+        numCromatico = new JLabel("Número cromático = ");
+        permutacion = new JLabel("Permutación: ");
+        numCromatico.setBounds(12,430, 300, 30);
+        permutacion.setBounds(12,465, 300, 30);
+        numCromatico.setVisible(false);
+        permutacion.setVisible(false);
+        
         panelMatriz = new PanelMatriz();
         initComponents();
         panelPuntos = new PanelPuntos();
         panelResultados = new PanelResultados();
+        panelPuntos.setVisible(true);
         jPanel1.add(panelPuntos);
         jPanel1.add(panelResultados);
+        jPanel1.add(numCromatico);
+        jPanel1.add(permutacion);
         scrollMatriz.setViewportView(panelMatriz);
         scrollMatriz.getViewport().setView(panelMatriz);
+        
     }
 
     /**
@@ -44,18 +60,20 @@ public class GUI extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblTituloPrincipal = new javax.swing.JLabel();
         btnMatrizAdyacencia = new javax.swing.JButton();
         btnKruskal = new javax.swing.JButton();
         scrollMatriz = new javax.swing.JScrollPane();
+        btnBorrarPuntos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(1094, 1300));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1094, 550));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel1.setText("Algoritmo de Kruskal");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblTituloPrincipal.setBackground(new java.awt.Color(51, 255, 204));
+        lblTituloPrincipal.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        lblTituloPrincipal.setText("Número cromático para un grafo.");
+        lblTituloPrincipal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnMatrizAdyacencia.setText("Matriz de adyacencia");
         btnMatrizAdyacencia.addActionListener(new java.awt.event.ActionListener() {
@@ -64,10 +82,17 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        btnKruskal.setText("Kruskal");
+        btnKruskal.setText("Número cromático");
         btnKruskal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKruskalActionPerformed(evt);
+            }
+        });
+
+        btnBorrarPuntos.setText("Borrar puntos");
+        btnBorrarPuntos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarPuntosActionPerformed(evt);
             }
         });
 
@@ -78,14 +103,16 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblTituloPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(620, 620, 620)
                         .addComponent(scrollMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnBorrarPuntos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnMatrizAdyacencia)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnKruskal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnKruskal, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -93,14 +120,15 @@ public class GUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTituloPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMatrizAdyacencia)
-                    .addComponent(btnKruskal))
+                    .addComponent(btnKruskal)
+                    .addComponent(btnBorrarPuntos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollMatriz, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(748, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel1);
@@ -133,9 +161,20 @@ public class GUI extends javax.swing.JFrame {
         panelMatriz.leerMatriz();
         panelResultados.setPuntos(panelPuntos.getPuntos());
         panelResultados.setParejasDeAristas(panelMatriz.getParejasDeAristas());
-        panelResultados.colaPrioridad();
-        //panelResultados.dibujarGrafos();
+        panelResultados.dibujarGrafos();
+        panelPuntos.setVisible(false);
+        numCromatico.setVisible(true);
+        permutacion.setVisible(true);
     }//GEN-LAST:event_btnKruskalActionPerformed
+
+    private void btnBorrarPuntosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarPuntosActionPerformed
+        // Método para borrar puntos de la clase PanelPuntos
+        panelPuntos.borrarPuntos();
+        panelMatriz.borrarMatriz();
+        panelPuntos.setVisible(true);
+        numCromatico.setVisible(false);
+        permutacion.setVisible(false);
+    }//GEN-LAST:event_btnBorrarPuntosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,11 +212,12 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBorrarPuntos;
     private javax.swing.JButton btnKruskal;
     private javax.swing.JButton btnMatrizAdyacencia;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblTituloPrincipal;
     private javax.swing.JScrollPane scrollMatriz;
     // End of variables declaration//GEN-END:variables
 }

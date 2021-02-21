@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kruskal.Vista;
+package vista;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -21,8 +22,8 @@ public class PanelPuntos extends JPanel implements MouseListener{
     private int numPuntos = 0;
     private JLabel[] lblPuntos;
     public PanelPuntos(){
-        lblPuntos = new JLabel[12];
-        puntos = new Puntos[12];
+        lblPuntos = new JLabel[21];
+        puntos = new Puntos[21];
         setLayout(null);
         addMouseListener(this);
         setBounds(12,97,614,323);
@@ -34,7 +35,7 @@ public class PanelPuntos extends JPanel implements MouseListener{
     public void mouseClicked(MouseEvent e) {
         
         
-        if(numPuntos<10){
+        if(numPuntos<21){
             numPuntos++;
             generarPunto(e.getX(), e.getY());
         }
@@ -67,8 +68,17 @@ public class PanelPuntos extends JPanel implements MouseListener{
         add(lblPuntos[numPuntos-1]);
         this.repaint();
     }
-
+    
     public Puntos[] getPuntos() {
         return puntos;
+    }
+    
+    public void borrarPuntos(){
+        // Se limpia panel y arreglos de puntos.
+        removeAll();
+        repaint();
+        numPuntos = 0;
+        Arrays.fill(puntos, null);
+        Arrays.fill(lblPuntos, null);
     }
 }

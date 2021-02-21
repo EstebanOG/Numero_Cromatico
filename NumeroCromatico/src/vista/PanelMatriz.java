@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kruskal.Vista;
+package vista;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,7 +28,7 @@ public class PanelMatriz extends JPanel {
 
     public PanelMatriz() {
         setLayout(null);
-        setPreferredSize(new Dimension(800, 520));
+        setPreferredSize(new Dimension(1400, 890));
         setVisible(true);
         iniciarComponentes();
     }
@@ -36,7 +36,7 @@ public class PanelMatriz extends JPanel {
     private void iniciarComponentes() {
         lblTituloMatriz = new JLabel();
         lblTituloMatriz.setBounds(0, 0, 400, 30);
-        lblTituloMatriz.setText("<html>99 = Costo de una arista para vertices no adjuntos<br>X indica que la matriz es simétrica</html>");
+        lblTituloMatriz.setText("<html>1 = Para vertices adjuntos.<br>X indica que la matriz es simétrica.</html>");
         add(lblTituloMatriz);
     }
 
@@ -54,7 +54,7 @@ public class PanelMatriz extends JPanel {
                 } else if (i == j) {
                     matriz[i][j] = 0 + "";
                 } else if (j > i) {
-                    matriz[i][j] = 99 + "";
+                    matriz[i][j] = 0 + "";
                 } else {
                     matriz[i][j] = "X";
                 }
@@ -121,7 +121,7 @@ public class PanelMatriz extends JPanel {
         for (int i = 0; i <= numPuntos; i++) {
             for (int j = 0; j <= numPuntos; j++) {
                 if (i != 0 && j != 0) {
-                    if (!matriz[i][j].equals("X") && !matriz[i][j].equals("99") && !matriz[i][j].equals("0")) {
+                    if (!matriz[i][j].equals("X") && !matriz[i][j].equals("0")) {
                         parejasDeAristas.add(new ParejasAristas(i, j, Integer.parseInt(matriz[i][j])));
 
                     }
@@ -141,5 +141,10 @@ public class PanelMatriz extends JPanel {
     public ArrayList<ParejasAristas> getParejasDeAristas() {
         return parejasDeAristas;
     }
-
+    
+    public void borrarMatriz(){
+        removeAll();
+        repaint();
+        iniciarComponentes();
+    }
 }

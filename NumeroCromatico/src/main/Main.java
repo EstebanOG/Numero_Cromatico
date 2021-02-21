@@ -3,22 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kruskal;
+package main;
 
-import kruskal.Vista.GUI;
+import vista.GUI;
 
 /**
  *
- * @author Usuario
+ * @author Esteban Olaya
  */
-public class Kruskal {
+public class Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        // Se instancia objeto de la clase GUI.
         GUI gui = new GUI();
-        gui.setTitle("Algoritmo de Kruskal");
+        gui.setTitle("Número cromático para un grafo");
         gui.setVisible(true);
     }
     
