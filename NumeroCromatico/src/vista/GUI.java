@@ -7,6 +7,7 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.Arrays;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -31,7 +32,7 @@ public class GUI extends javax.swing.JFrame {
         numCromatico = new JLabel("Número cromático = ");
         permutacion = new JLabel("Permutación: ");
         numCromatico.setBounds(12,430, 300, 30);
-        permutacion.setBounds(12,465, 300, 30);
+        permutacion.setBounds(12,465, 300, 40);
         numCromatico.setVisible(false);
         permutacion.setVisible(false);
         
@@ -162,6 +163,9 @@ public class GUI extends javax.swing.JFrame {
         panelResultados.setPuntos(panelPuntos.getPuntos());
         panelResultados.setParejasDeAristas(panelMatriz.getParejasDeAristas());
         panelResultados.dibujarGrafos();
+        numCromatico.setText("Número cromático = "+panelResultados.getNumCromatico());
+        //permutacion.setText("<Html>Permutación: "+Arrays.toString(panelResultados.getPermutacion())+"<br>Permutación: "+Arrays.toString(panelResultados.getPermutacionFinal())+"</html>");
+        permutacion.setText("Permutación: "+Arrays.toString(panelResultados.getPermutacionFinal()));
         panelPuntos.setVisible(false);
         numCromatico.setVisible(true);
         permutacion.setVisible(true);
